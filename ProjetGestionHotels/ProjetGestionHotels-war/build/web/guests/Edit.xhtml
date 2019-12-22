@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGuestsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGuestsLabel_guestNumber}" for="guestNumber" />
+                    <h:inputText id="guestNumber" value="#{guestsController.selected.guestNumber}" title="#{bundle.EditGuestsTitle_guestNumber}" required="true" requiredMessage="#{bundle.EditGuestsRequiredMessage_guestNumber}"/>
+                    <h:outputLabel value="#{bundle.EditGuestsLabel_guestName}" for="guestName" />
+                    <h:inputText id="guestName" value="#{guestsController.selected.guestName}" title="#{bundle.EditGuestsTitle_guestName}" />
+                    <h:outputLabel value="#{bundle.EditGuestsLabel_guestAddress}" for="guestAddress" />
+                    <h:inputText id="guestAddress" value="#{guestsController.selected.guestAddress}" title="#{bundle.EditGuestsTitle_guestAddress}" />
+                    <h:outputLabel value="#{bundle.EditGuestsLabel_guestCity}" for="guestCity" />
+                    <h:inputText id="guestCity" value="#{guestsController.selected.guestCity}" title="#{bundle.EditGuestsTitle_guestCity}" />
+                    <h:outputLabel value="#{bundle.EditGuestsLabel_guestPhone}" for="guestPhone" />
+                    <h:inputText id="guestPhone" value="#{guestsController.selected.guestPhone}" title="#{bundle.EditGuestsTitle_guestPhone}" />
+                </h:panelGrid>
+                <h:commandLink action="#{guestsController.update}" value="#{bundle.EditGuestsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGuestsViewLink}"/>
+                <br />
+                <h:commandLink action="#{guestsController.prepareList}" value="#{bundle.EditGuestsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGuestsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

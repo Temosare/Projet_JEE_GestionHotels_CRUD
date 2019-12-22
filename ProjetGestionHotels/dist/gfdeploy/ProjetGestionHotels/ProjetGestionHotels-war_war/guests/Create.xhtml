@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateGuestsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateGuestsLabel_guestNumber}" for="guestNumber" />
+                    <h:inputText id="guestNumber" value="#{guestsController.selected.guestNumber}" title="#{bundle.CreateGuestsTitle_guestNumber}" required="true" requiredMessage="#{bundle.CreateGuestsRequiredMessage_guestNumber}"/>
+                    <h:outputLabel value="#{bundle.CreateGuestsLabel_guestName}" for="guestName" />
+                    <h:inputText id="guestName" value="#{guestsController.selected.guestName}" title="#{bundle.CreateGuestsTitle_guestName}" />
+                    <h:outputLabel value="#{bundle.CreateGuestsLabel_guestAddress}" for="guestAddress" />
+                    <h:inputText id="guestAddress" value="#{guestsController.selected.guestAddress}" title="#{bundle.CreateGuestsTitle_guestAddress}" />
+                    <h:outputLabel value="#{bundle.CreateGuestsLabel_guestCity}" for="guestCity" />
+                    <h:inputText id="guestCity" value="#{guestsController.selected.guestCity}" title="#{bundle.CreateGuestsTitle_guestCity}" />
+                    <h:outputLabel value="#{bundle.CreateGuestsLabel_guestPhone}" for="guestPhone" />
+                    <h:inputText id="guestPhone" value="#{guestsController.selected.guestPhone}" title="#{bundle.CreateGuestsTitle_guestPhone}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{guestsController.create}" value="#{bundle.CreateGuestsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{guestsController.prepareList}" value="#{bundle.CreateGuestsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateGuestsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

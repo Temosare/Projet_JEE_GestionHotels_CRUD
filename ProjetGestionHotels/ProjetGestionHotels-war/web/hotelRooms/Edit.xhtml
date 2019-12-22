@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHotelRoomsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHotelRoomsLabel_hotelRoomsPK_roomNumber}" for="hotelRoomsPK_roomNumber" />
+                    <h:inputText id="hotelRoomsPK_roomNumber" value="#{hotelRoomsController.selected.hotelRoomsPK.roomNumber}" title="#{bundle.EditHotelRoomsTitle_hotelRoomsPK_roomNumber}" required="true" requiredMessage="#{bundle.EditHotelRoomsRequiredMessage_hotelRoomsPK_roomNumber}"/>
+                    <h:outputLabel value="#{bundle.EditHotelRoomsLabel_roomTypeCode}" for="roomTypeCode" />
+                    <h:inputText id="roomTypeCode" value="#{hotelRoomsController.selected.roomTypeCode}" title="#{bundle.EditHotelRoomsTitle_roomTypeCode}" />
+                    <h:outputLabel value="#{bundle.EditHotelRoomsLabel_roomFloor}" for="roomFloor" />
+                    <h:inputText id="roomFloor" value="#{hotelRoomsController.selected.roomFloor}" title="#{bundle.EditHotelRoomsTitle_roomFloor}" />
+                    <h:outputLabel value="#{bundle.EditHotelRoomsLabel_roomFloorCount}" for="roomFloorCount" />
+                    <h:inputText id="roomFloorCount" value="#{hotelRoomsController.selected.roomFloorCount}" title="#{bundle.EditHotelRoomsTitle_roomFloorCount}" />
+                    <h:outputLabel value="#{bundle.EditHotelRoomsLabel_hotels}" for="hotels" />
+                    <h:selectOneMenu id="hotels" value="#{hotelRoomsController.selected.hotels}" title="#{bundle.EditHotelRoomsTitle_hotels}" required="true" requiredMessage="#{bundle.EditHotelRoomsRequiredMessage_hotels}">
+                        <f:selectItems value="#{hotelsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{hotelRoomsController.update}" value="#{bundle.EditHotelRoomsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHotelRoomsViewLink}"/>
+                <br />
+                <h:commandLink action="#{hotelRoomsController.prepareList}" value="#{bundle.EditHotelRoomsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHotelRoomsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

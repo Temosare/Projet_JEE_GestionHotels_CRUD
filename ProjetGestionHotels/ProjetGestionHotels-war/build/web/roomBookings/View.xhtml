@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRoomBookingsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_bookingId}"/>
+                    <h:outputText value="#{roomBookingsController.selected.bookingId}" title="#{bundle.ViewRoomBookingsTitle_bookingId}"/>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_hotelId}"/>
+                    <h:outputText value="#{roomBookingsController.selected.hotelId}" title="#{bundle.ViewRoomBookingsTitle_hotelId}"/>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_roomNumber}"/>
+                    <h:outputText value="#{roomBookingsController.selected.roomNumber}" title="#{bundle.ViewRoomBookingsTitle_roomNumber}"/>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_dateBookingFrom}"/>
+                    <h:outputText value="#{roomBookingsController.selected.dateBookingFrom}" title="#{bundle.ViewRoomBookingsTitle_dateBookingFrom}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_dateBookingTo}"/>
+                    <h:outputText value="#{roomBookingsController.selected.dateBookingTo}" title="#{bundle.ViewRoomBookingsTitle_dateBookingTo}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_roomCount}"/>
+                    <h:outputText value="#{roomBookingsController.selected.roomCount}" title="#{bundle.ViewRoomBookingsTitle_roomCount}"/>
+                    <h:outputText value="#{bundle.ViewRoomBookingsLabel_bookings}"/>
+                    <h:outputText value="#{roomBookingsController.selected.bookings}" title="#{bundle.ViewRoomBookingsTitle_bookings}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{roomBookingsController.destroyAndView}" value="#{bundle.ViewRoomBookingsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRoomBookingsEditLink}"/>
+                <br />
+                <h:commandLink action="#{roomBookingsController.prepareCreate}" value="#{bundle.ViewRoomBookingsCreateLink}" />
+                <br />
+                <h:commandLink action="#{roomBookingsController.prepareList}" value="#{bundle.ViewRoomBookingsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRoomBookingsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

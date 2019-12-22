@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHotelChainsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHotelChainsLabel_hotelChainId}"/>
+                    <h:outputText value="#{hotelChainsController.selected.hotelChainId}" title="#{bundle.ViewHotelChainsTitle_hotelChainId}"/>
+                    <h:outputText value="#{bundle.ViewHotelChainsLabel_hotelChainCode}"/>
+                    <h:outputText value="#{hotelChainsController.selected.hotelChainCode}" title="#{bundle.ViewHotelChainsTitle_hotelChainCode}"/>
+                    <h:outputText value="#{bundle.ViewHotelChainsLabel_hotelChainName}"/>
+                    <h:outputText value="#{hotelChainsController.selected.hotelChainName}" title="#{bundle.ViewHotelChainsTitle_hotelChainName}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelChainsController.destroyAndView}" value="#{bundle.ViewHotelChainsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHotelChainsEditLink}"/>
+                <br />
+                <h:commandLink action="#{hotelChainsController.prepareCreate}" value="#{bundle.ViewHotelChainsCreateLink}" />
+                <br />
+                <h:commandLink action="#{hotelChainsController.prepareList}" value="#{bundle.ViewHotelChainsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHotelChainsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

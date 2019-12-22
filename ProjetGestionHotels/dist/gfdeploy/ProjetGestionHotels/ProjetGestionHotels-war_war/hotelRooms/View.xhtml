@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHotelRoomsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHotelRoomsLabel_hotelRoomsPK_roomNumber}"/>
+                    <h:outputText value="#{hotelRoomsController.selected.hotelRoomsPK.roomNumber}" title="#{bundle.ViewHotelRoomsTitle_hotelRoomsPK_roomNumber}"/>
+                    <h:outputText value="#{bundle.ViewHotelRoomsLabel_roomTypeCode}"/>
+                    <h:outputText value="#{hotelRoomsController.selected.roomTypeCode}" title="#{bundle.ViewHotelRoomsTitle_roomTypeCode}"/>
+                    <h:outputText value="#{bundle.ViewHotelRoomsLabel_roomFloor}"/>
+                    <h:outputText value="#{hotelRoomsController.selected.roomFloor}" title="#{bundle.ViewHotelRoomsTitle_roomFloor}"/>
+                    <h:outputText value="#{bundle.ViewHotelRoomsLabel_roomFloorCount}"/>
+                    <h:outputText value="#{hotelRoomsController.selected.roomFloorCount}" title="#{bundle.ViewHotelRoomsTitle_roomFloorCount}"/>
+                    <h:outputText value="#{bundle.ViewHotelRoomsLabel_hotels}"/>
+                    <h:outputText value="#{hotelRoomsController.selected.hotels}" title="#{bundle.ViewHotelRoomsTitle_hotels}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelRoomsController.destroyAndView}" value="#{bundle.ViewHotelRoomsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHotelRoomsEditLink}"/>
+                <br />
+                <h:commandLink action="#{hotelRoomsController.prepareCreate}" value="#{bundle.ViewHotelRoomsCreateLink}" />
+                <br />
+                <h:commandLink action="#{hotelRoomsController.prepareList}" value="#{bundle.ViewHotelRoomsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHotelRoomsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

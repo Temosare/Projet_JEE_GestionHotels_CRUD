@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBookingsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_bookingId}" for="bookingId" />
+                    <h:inputText id="bookingId" value="#{bookingsController.selected.bookingId}" title="#{bundle.CreateBookingsTitle_bookingId}" required="true" requiredMessage="#{bundle.CreateBookingsRequiredMessage_bookingId}"/>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_hotelId}" for="hotelId" />
+                    <h:inputText id="hotelId" value="#{bookingsController.selected.hotelId}" title="#{bundle.CreateBookingsTitle_hotelId}" />
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_roomNumber}" for="roomNumber" />
+                    <h:inputText id="roomNumber" value="#{bookingsController.selected.roomNumber}" title="#{bundle.CreateBookingsTitle_roomNumber}" />
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_dateFrom}" for="dateFrom" />
+                    <h:inputText id="dateFrom" value="#{bookingsController.selected.dateFrom}" title="#{bundle.CreateBookingsTitle_dateFrom}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_dateTo}" for="dateTo" />
+                    <h:inputText id="dateTo" value="#{bookingsController.selected.dateTo}" title="#{bundle.CreateBookingsTitle_dateTo}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_guestNumber}" for="guestNumber" />
+                    <h:selectOneMenu id="guestNumber" value="#{bookingsController.selected.guestNumber}" title="#{bundle.CreateBookingsTitle_guestNumber}" >
+                        <f:selectItems value="#{guestsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBookingsLabel_roomBookings}" for="roomBookings" />
+                    <h:selectOneMenu id="roomBookings" value="#{bookingsController.selected.roomBookings}" title="#{bundle.CreateBookingsTitle_roomBookings}" >
+                        <f:selectItems value="#{roomBookingsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bookingsController.create}" value="#{bundle.CreateBookingsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bookingsController.prepareList}" value="#{bundle.CreateBookingsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBookingsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

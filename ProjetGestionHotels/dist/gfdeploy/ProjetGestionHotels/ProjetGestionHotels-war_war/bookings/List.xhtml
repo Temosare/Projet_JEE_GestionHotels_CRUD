@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListBookingsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListBookingsEmpty}" rendered="#{bookingsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{bookingsController.items.rowCount > 0}">
+                    <h:outputText value="#{bookingsController.pagination.pageFirstItem + 1}..#{bookingsController.pagination.pageLastItem + 1}/#{bookingsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{bookingsController.previous}" value="#{bundle.Previous} #{bookingsController.pagination.pageSize}" rendered="#{bookingsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{bookingsController.next}" value="#{bundle.Next} #{bookingsController.pagination.pageSize}" rendered="#{bookingsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{bookingsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_bookingId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bookingId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_hotelId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hotelId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_roomNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.roomNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_dateFrom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateFrom}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_dateTo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateTo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_guestNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListBookingsTitle_roomBookings}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.roomBookings}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{bookingsController.prepareView}" value="#{bundle.ListBookingsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bookingsController.prepareEdit}" value="#{bundle.ListBookingsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{bookingsController.destroy}" value="#{bundle.ListBookingsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{bookingsController.prepareCreate}" value="#{bundle.ListBookingsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListBookingsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

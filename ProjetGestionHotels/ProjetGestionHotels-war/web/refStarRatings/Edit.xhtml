@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRefStarRatingsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRefStarRatingsLabel_starRatingId}" for="starRatingId" />
+                    <h:inputText id="starRatingId" value="#{refStarRatingsController.selected.starRatingId}" title="#{bundle.EditRefStarRatingsTitle_starRatingId}" required="true" requiredMessage="#{bundle.EditRefStarRatingsRequiredMessage_starRatingId}"/>
+                    <h:outputLabel value="#{bundle.EditRefStarRatingsLabel_starRatingCode}" for="starRatingCode" />
+                    <h:inputText id="starRatingCode" value="#{refStarRatingsController.selected.starRatingCode}" title="#{bundle.EditRefStarRatingsTitle_starRatingCode}" />
+                    <h:outputLabel value="#{bundle.EditRefStarRatingsLabel_starRatingImage}" for="starRatingImage" />
+                    <h:inputText id="starRatingImage" value="#{refStarRatingsController.selected.starRatingImage}" title="#{bundle.EditRefStarRatingsTitle_starRatingImage}" />
+                </h:panelGrid>
+                <h:commandLink action="#{refStarRatingsController.update}" value="#{bundle.EditRefStarRatingsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRefStarRatingsViewLink}"/>
+                <br />
+                <h:commandLink action="#{refStarRatingsController.prepareList}" value="#{bundle.EditRefStarRatingsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRefStarRatingsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

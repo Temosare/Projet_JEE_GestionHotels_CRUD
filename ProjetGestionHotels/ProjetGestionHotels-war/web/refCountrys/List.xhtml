@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRefCountrysTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRefCountrysEmpty}" rendered="#{refCountrysController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{refCountrysController.items.rowCount > 0}">
+                    <h:outputText value="#{refCountrysController.pagination.pageFirstItem + 1}..#{refCountrysController.pagination.pageLastItem + 1}/#{refCountrysController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{refCountrysController.previous}" value="#{bundle.Previous} #{refCountrysController.pagination.pageSize}" rendered="#{refCountrysController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{refCountrysController.next}" value="#{bundle.Next} #{refCountrysController.pagination.pageSize}" rendered="#{refCountrysController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{refCountrysController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRefCountrysTitle_countryCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.countryCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRefCountrysTitle_countryCurrency}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.countryCurrency}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRefCountrysTitle_countryName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.countryName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{refCountrysController.prepareView}" value="#{bundle.ListRefCountrysViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{refCountrysController.prepareEdit}" value="#{bundle.ListRefCountrysEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{refCountrysController.destroy}" value="#{bundle.ListRefCountrysDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{refCountrysController.prepareCreate}" value="#{bundle.ListRefCountrysCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRefCountrysIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

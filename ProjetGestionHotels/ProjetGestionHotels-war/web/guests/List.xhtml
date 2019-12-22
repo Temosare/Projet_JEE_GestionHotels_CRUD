@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGuestsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGuestsEmpty}" rendered="#{guestsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{guestsController.items.rowCount > 0}">
+                    <h:outputText value="#{guestsController.pagination.pageFirstItem + 1}..#{guestsController.pagination.pageLastItem + 1}/#{guestsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{guestsController.previous}" value="#{bundle.Previous} #{guestsController.pagination.pageSize}" rendered="#{guestsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{guestsController.next}" value="#{bundle.Next} #{guestsController.pagination.pageSize}" rendered="#{guestsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{guestsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGuestsTitle_guestNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestNumber}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGuestsTitle_guestName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGuestsTitle_guestAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestAddress}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGuestsTitle_guestCity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestCity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGuestsTitle_guestPhone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.guestPhone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{guestsController.prepareView}" value="#{bundle.ListGuestsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{guestsController.prepareEdit}" value="#{bundle.ListGuestsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{guestsController.destroy}" value="#{bundle.ListGuestsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{guestsController.prepareCreate}" value="#{bundle.ListGuestsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListGuestsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHotelsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelId}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelId}" title="#{bundle.ViewHotelsTitle_hotelId}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelCode}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelCode}" title="#{bundle.ViewHotelsTitle_hotelCode}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelName}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelName}" title="#{bundle.ViewHotelsTitle_hotelName}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelUrl}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelUrl}" title="#{bundle.ViewHotelsTitle_hotelUrl}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelPostCode}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelPostCode}" title="#{bundle.ViewHotelsTitle_hotelPostCode}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_hotelChainId}"/>
+                    <h:outputText value="#{hotelsController.selected.hotelChainId}" title="#{bundle.ViewHotelsTitle_hotelChainId}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_countryCode}"/>
+                    <h:outputText value="#{hotelsController.selected.countryCode}" title="#{bundle.ViewHotelsTitle_countryCode}"/>
+                    <h:outputText value="#{bundle.ViewHotelsLabel_starRatingId}"/>
+                    <h:outputText value="#{hotelsController.selected.starRatingId}" title="#{bundle.ViewHotelsTitle_starRatingId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelsController.destroyAndView}" value="#{bundle.ViewHotelsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHotelsEditLink}"/>
+                <br />
+                <h:commandLink action="#{hotelsController.prepareCreate}" value="#{bundle.ViewHotelsCreateLink}" />
+                <br />
+                <h:commandLink action="#{hotelsController.prepareList}" value="#{bundle.ViewHotelsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHotelsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

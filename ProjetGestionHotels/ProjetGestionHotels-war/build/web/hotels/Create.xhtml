@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHotelsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelId}" for="hotelId" />
+                    <h:inputText id="hotelId" value="#{hotelsController.selected.hotelId}" title="#{bundle.CreateHotelsTitle_hotelId}" required="true" requiredMessage="#{bundle.CreateHotelsRequiredMessage_hotelId}"/>
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelCode}" for="hotelCode" />
+                    <h:inputText id="hotelCode" value="#{hotelsController.selected.hotelCode}" title="#{bundle.CreateHotelsTitle_hotelCode}" />
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelName}" for="hotelName" />
+                    <h:inputText id="hotelName" value="#{hotelsController.selected.hotelName}" title="#{bundle.CreateHotelsTitle_hotelName}" />
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelUrl}" for="hotelUrl" />
+                    <h:inputText id="hotelUrl" value="#{hotelsController.selected.hotelUrl}" title="#{bundle.CreateHotelsTitle_hotelUrl}" />
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelPostCode}" for="hotelPostCode" />
+                    <h:inputText id="hotelPostCode" value="#{hotelsController.selected.hotelPostCode}" title="#{bundle.CreateHotelsTitle_hotelPostCode}" />
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_hotelChainId}" for="hotelChainId" />
+                    <h:selectOneMenu id="hotelChainId" value="#{hotelsController.selected.hotelChainId}" title="#{bundle.CreateHotelsTitle_hotelChainId}" required="true" requiredMessage="#{bundle.CreateHotelsRequiredMessage_hotelChainId}">
+                        <f:selectItems value="#{hotelChainsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_countryCode}" for="countryCode" />
+                    <h:selectOneMenu id="countryCode" value="#{hotelsController.selected.countryCode}" title="#{bundle.CreateHotelsTitle_countryCode}" required="true" requiredMessage="#{bundle.CreateHotelsRequiredMessage_countryCode}">
+                        <f:selectItems value="#{refCountrysController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHotelsLabel_starRatingId}" for="starRatingId" />
+                    <h:selectOneMenu id="starRatingId" value="#{hotelsController.selected.starRatingId}" title="#{bundle.CreateHotelsTitle_starRatingId}" required="true" requiredMessage="#{bundle.CreateHotelsRequiredMessage_starRatingId}">
+                        <f:selectItems value="#{refStarRatingsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelsController.create}" value="#{bundle.CreateHotelsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{hotelsController.prepareList}" value="#{bundle.CreateHotelsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHotelsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

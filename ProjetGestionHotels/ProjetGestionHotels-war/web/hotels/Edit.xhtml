@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHotelsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelId}" for="hotelId" />
+                    <h:inputText id="hotelId" value="#{hotelsController.selected.hotelId}" title="#{bundle.EditHotelsTitle_hotelId}" required="true" requiredMessage="#{bundle.EditHotelsRequiredMessage_hotelId}"/>
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelCode}" for="hotelCode" />
+                    <h:inputText id="hotelCode" value="#{hotelsController.selected.hotelCode}" title="#{bundle.EditHotelsTitle_hotelCode}" />
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelName}" for="hotelName" />
+                    <h:inputText id="hotelName" value="#{hotelsController.selected.hotelName}" title="#{bundle.EditHotelsTitle_hotelName}" />
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelUrl}" for="hotelUrl" />
+                    <h:inputText id="hotelUrl" value="#{hotelsController.selected.hotelUrl}" title="#{bundle.EditHotelsTitle_hotelUrl}" />
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelPostCode}" for="hotelPostCode" />
+                    <h:inputText id="hotelPostCode" value="#{hotelsController.selected.hotelPostCode}" title="#{bundle.EditHotelsTitle_hotelPostCode}" />
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_hotelChainId}" for="hotelChainId" />
+                    <h:selectOneMenu id="hotelChainId" value="#{hotelsController.selected.hotelChainId}" title="#{bundle.EditHotelsTitle_hotelChainId}" required="true" requiredMessage="#{bundle.EditHotelsRequiredMessage_hotelChainId}">
+                        <f:selectItems value="#{hotelChainsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_countryCode}" for="countryCode" />
+                    <h:selectOneMenu id="countryCode" value="#{hotelsController.selected.countryCode}" title="#{bundle.EditHotelsTitle_countryCode}" required="true" requiredMessage="#{bundle.EditHotelsRequiredMessage_countryCode}">
+                        <f:selectItems value="#{refCountrysController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHotelsLabel_starRatingId}" for="starRatingId" />
+                    <h:selectOneMenu id="starRatingId" value="#{hotelsController.selected.starRatingId}" title="#{bundle.EditHotelsTitle_starRatingId}" required="true" requiredMessage="#{bundle.EditHotelsRequiredMessage_starRatingId}">
+                        <f:selectItems value="#{refStarRatingsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{hotelsController.update}" value="#{bundle.EditHotelsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHotelsViewLink}"/>
+                <br />
+                <h:commandLink action="#{hotelsController.prepareList}" value="#{bundle.EditHotelsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHotelsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

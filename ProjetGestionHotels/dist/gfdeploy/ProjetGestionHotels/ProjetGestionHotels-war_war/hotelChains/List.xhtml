@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHotelChainsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHotelChainsEmpty}" rendered="#{hotelChainsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{hotelChainsController.items.rowCount > 0}">
+                    <h:outputText value="#{hotelChainsController.pagination.pageFirstItem + 1}..#{hotelChainsController.pagination.pageLastItem + 1}/#{hotelChainsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{hotelChainsController.previous}" value="#{bundle.Previous} #{hotelChainsController.pagination.pageSize}" rendered="#{hotelChainsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{hotelChainsController.next}" value="#{bundle.Next} #{hotelChainsController.pagination.pageSize}" rendered="#{hotelChainsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{hotelChainsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHotelChainsTitle_hotelChainId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hotelChainId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHotelChainsTitle_hotelChainCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hotelChainCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHotelChainsTitle_hotelChainName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hotelChainName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{hotelChainsController.prepareView}" value="#{bundle.ListHotelChainsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hotelChainsController.prepareEdit}" value="#{bundle.ListHotelChainsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hotelChainsController.destroy}" value="#{bundle.ListHotelChainsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{hotelChainsController.prepareCreate}" value="#{bundle.ListHotelChainsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHotelChainsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
